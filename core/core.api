@@ -1,0 +1,28 @@
+service core-api {
+	// User login
+	@handler UserLogin
+	post /user/login (LoginRequest) returns (LoginReply)
+
+	//
+	@handler UserDetail
+	post /user/detail (UserDetailRequest) returns (UserDetailReply)
+}
+
+type LoginRequest {
+	Name     string `json:"name" `
+	Password string `json:"password"`
+}
+
+type LoginReply {
+	Token string `json:"token"`
+}
+
+type UserDetailRequest {
+	identity string `json:"identity"`
+}
+
+type UserDetailReply {
+	Name  string `json:"name" `
+	Email string `json:"email"`
+}
+
