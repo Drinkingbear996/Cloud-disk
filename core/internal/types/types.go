@@ -3,6 +3,14 @@
 
 package types
 
+type EmailCodeReply struct {
+	Code string `json:"code"`
+}
+
+type EmailCodeRequest struct {
+	Email string `json:"email"`
+}
+
 type LoginReply struct {
 	Token string `json:"token"`
 }
@@ -19,4 +27,16 @@ type UserDetailReply struct {
 
 type UserDetailRequest struct {
 	Identity string `json:"identity"`
+}
+
+type UserRegisterReply struct {
+	Name     string `json:"Name"`
+	Password string `json:"password"`
+}
+
+type UserRegisterRequest struct {
+	Name     string `json:"name"`
+	Password string `json:"password"`
+	Email    string `json:"email"`
+	Code     string `json:"code"`
 }

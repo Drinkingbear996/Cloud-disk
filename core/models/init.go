@@ -1,12 +1,14 @@
 package models
 
 import (
+	"github.com/redis/go-redis/v9"
 	"log"
 	"xorm.io/xorm"
 )
 import _ "github.com/go-sql-driver/mysql"
 
 var Engine = Init()
+var RDB = InitRedis()
 
 // Init initializes the database engine and returns an instance of *xorm.Engine.
 func Init() *xorm.Engine {
@@ -21,4 +23,12 @@ func Init() *xorm.Engine {
 	log.Println("Database engine successfully initialized")
 
 	return engine
+}
+func InitRedis() *redis.Client {
+
+	return redis.NewClient(&redis.Options{
+		Addr:     "localhost:6379",
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	})
 }

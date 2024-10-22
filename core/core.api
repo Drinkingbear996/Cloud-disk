@@ -3,9 +3,29 @@ service core-api {
 	@handler UserLogin
 	post /user/login (LoginRequest) returns (LoginReply)
 
-	//
+	//User profile
 	@handler UserDetail
 	post /user/detail (UserDetailRequest) returns (UserDetailReply)
+
+	//User Verification register code
+	@handler MailCodeRequest
+	post /mail/code/send/register (EmailCodeRequest) returns (EmailCodeReply)
+
+	@handler UserRegister
+	post /user/register (UserRegisterRequest) returns (UserRegisterReply)
+}
+
+type UserRegisterRequest {
+	//Username password Email verification code
+	Name     string `json:"name"`
+	Password string `json:"password"`
+	Email    string `json:"email"`
+	Code     string `json:"code"`
+}
+
+type UserRegisterReply {
+	Name     string `json:"Name"`
+	Password string `json:"password"`
 }
 
 type LoginRequest {
@@ -24,5 +44,13 @@ type UserDetailRequest {
 type UserDetailReply {
 	Name  string `json:"name" `
 	Email string `json:"email"`
+}
+
+type EmailCodeRequest {
+	Email string `json:"email"`
+}
+
+type EmailCodeReply {
+	Code string `json:"code"`
 }
 
